@@ -5,13 +5,13 @@
 }
 
 @* Используется класс container, чтобы задать ограниченную ширину для содержимого и центрировать его на экране. *@
-<div class="container mt-5">
+<div class="container-fluid" style="background:aqua; margin: 5px">
     @* Сетка Bootstrap: Внутри контейнера находится строка (row), которая разделяется на 
     два столбца с помощью классов col-md-6. 
     Это делит пространство пополам для экрана средней ширины и выше. *@
-    <div class="row">
+    <div class="row" style="background:aquamarine; margin: 5px">
         <!-- Левая колонка (для картинки) -->
-        <div class="col-md-6">
+        <div class="col-sm-3" style="background:yellow; margin: 5px">
             @* В левой колонке (col-md-6) размещена картинка с классом img-fluid, что позволяет ей адаптироваться к размеру контейнера. *@
             <img 
                 src="https://pabiostorageaccount.blob.core.windows.net/pabiosite/PavlovAndrii_profile_foto.png" 
@@ -21,10 +21,13 @@
         </div>
         <!-- Правая колонка (для текста) -->
         @* В правой колонке (col-md-6) находится текст. *@
-        <div class="col-md-6">
+        <div class="col" style="background:lightgreen; margin: 5px">
             <h2>Про мене</h2>
             <p>Привіт! Це моя сторінка</p>
             <p>Цей блок буде містити інформацию про мене</p>
         </div>
+    </div>
+    <div class="col" style="background:deepskyblue; margin: 5px">
+        other content
     </div>
 </div>
