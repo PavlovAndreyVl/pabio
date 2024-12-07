@@ -1,0 +1,27 @@
+﻿nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    /* Sub Menu */
+}
+
+nav ul li a {
+    display: block;
+    padding: 10px 15px;
+    color: #000;
+    text-decoration: none;
+    -webkit-transition: 0.2s linear;
+    -moz-transition: 0.2s linear;
+    -o-transition: 0.2s linear;
+    transition: 0.2s linear;
+}
+
+nav ul li a:hover {
+    background: #1d4f71;
+    color: #fff;
+}
+
+
