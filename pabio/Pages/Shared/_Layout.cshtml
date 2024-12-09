@@ -11,55 +11,25 @@
     <link rel="stylesheet" href="~/pabio.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        @* <nav class="navbar  navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom border-bottom" data-bs-theme="dark" box-shadow mb-3> *@
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Андрій ПАВЛОВ</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-right ">
-
-                        <ul class='nav bg-white' >
-                            <li><a asp-page="/Index">Про мене</a></li>
-                            <li><a asp-page="/">Професійна діяльність</a>
-                            <li><a asp-page="/">Сім'я</a></li>
-                            <li><a asp-page="/">Музика</a></li>
-                            <li><a asp-page="/">Спорт</a></li>
-                            <li><a asp-page="/Contacts">Контакти</a></li>
-                            </li>
-                        </ul>
-                   @*  <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewContext.RouteData.Values["page"].ToString() == "/Index" ? "active" : "")" 
-                            aria-current="page" asp-area="" asp-page="/Index">Про мене</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewContext.RouteData.Values["page"].ToString() == "/Contacts" ? "active" : "")" 
-                            asp-area="" asp-page="/Contacts">Контакти</a>
-                        </li>
-                       
-                    </ul> *@
-                    @* <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Про мене</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Contacts">Контакти</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/TestPage">TestPage</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li> 
-                    </ul> *@
-                </div>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 sticky-top">
+            <a class="navbar-brand" asp-area="" asp-page="/Index"><h1 class="display-6"><strong>Андрій ПАВЛОВ</strong></h1></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-right ">
+                <ul class='nav bg-white'>
+                    <li><a asp-page="/Index">Про мене</a></li>
+                    <li><a asp-page="/CV">Професійна діяльність</a>
+                    <li><a asp-page="/">Сім'я</a></li>
+                    <li><a asp-page="/">Музика</a></li>
+                    <li><a asp-page="/">Спорт</a></li>
+                    <li><a asp-page="/Contacts">Контакти</a></li>
+                </ul>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+
     <div class="container-fluid">
         <main role="main" class="pb-3">
             <div class="row">
@@ -67,12 +37,12 @@
                     <nav class='animated bounceInDown bg-white'>
                         <ul>
                             <li><a asp-page="/Index">Про мене</a></li>
-                            <li><a asp-page="/">Професійна діяльність</a>
+                            <li><a asp-page="/CV">Професійна діяльність</a>
                             <li><a asp-page="/">Сім'я</a></li>
                             <li><a asp-page="/">Музика</a></li>
                             <li><a asp-page="/">Спорт</a></li>
                             <li><a asp-page="/Contacts">Контакти</a></li>
-                            </li>   
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -86,13 +56,14 @@
                                 <h5 class="mb-0">Події</h5>
                             </div>
                             <div class="list-group list-group-flush">
+
                                 <a href="https://pabiosa.blob.core.windows.net/sertificates/Microservices_Robot_dreams_Diploma.pdf" target="_blank" class="list-group-item list-group-item-action">
                                     <small class="text-muted">28 жовтня 2024</small>
-                                    <h6 class="mb-1">Диплом "Мікросервісна архітектура"</h6>                                   
+                                    <h6 class="mb-1">Диплом "Мікросервісна архітектура"</h6>
                                     <p class="mb-0 text-black">Закінчив курс "Мікросервісна архітектура" та отримав диплом</p>
                                 </a>
-                                
-                                <a href="https://pabiosa.blob.core.windows.net/sertificates/Microservices_Robot_dreams_Diploma.pdf" target="_blank" class="list-group-item list-group-item-action">
+
+                                <a class="list-group-item list-group-item-action">
                                     <small class="text-muted">26 листопада 2024</small>
                                     <h6 class="mb-1">Навчання на курсі "Azure для початківців"</h6>
                                     <p class="mb-0 text-black">Розпочав навчання на курсі "Azure для початківців"</p>
@@ -103,13 +74,13 @@
 
                 </div>
             </div>
-            
+
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; @DateTime.Now.Year - Андрій ПАВЛОВ 
+            &copy; @DateTime.Now.Year - Андрій ПАВЛОВ
             @* - <a asp-area="" asp-page="/Privacy">Privacy</a> *@
         </div>
     </footer>
