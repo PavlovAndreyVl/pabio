@@ -1,0 +1,28 @@
+﻿@page
+@model pabio.Pages.EventsModel
+
+@{
+    ViewData["Title"] = "Події";
+}
+
+<h1 class="display-5">Події</h1>
+
+<div class="container">
+    @foreach (var eventItem in Model.Events)
+    {
+        <div class="card m-3">
+            <div class="card-header bg-secondary text-white position-sticky">
+                <h5 class="mb-0">@eventItem.Caption</h5>
+            </div>
+            <div class="list-group list-group-flush">
+
+                <a class="list-group-item list-group-item-action" target="_blank" href="@eventItem.Url">
+                    <small class="text-black">@eventItem.Date</small>
+                    @* <h6 class="mb-1"></h6> *@
+                    <p class="mb-0 text-black">@eventItem.Description</p>
+                </a>
+
+            </div>
+        </div>
+    }
+</div>

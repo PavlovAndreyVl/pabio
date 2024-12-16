@@ -1,0 +1,123 @@
+﻿@page
+@model pabio.Pages.FamilyModel
+@{
+    ViewData["Title"] = "Сім'я";
+}
+<div class="container-fluid">
+
+    <div class="row">
+        @* <div class="col-sm-3">
+        <img src="https://pabiosa.blob.core.windows.net/pabio-site-images/PavlovAndrii_profile_foto.png"
+        alt="It`s me"
+        class="img-thumbnail"
+        width="300">
+        </div> *@
+        <div class="col">
+            <h1 class="display-5">Моя сім'я</h1>
+            <p class="lead">Історія моєї сім'ї розпочалася 2-го червня 2012 року, коли на дні народження приятеля я зустрів Іру. Через рік  7 червня ми одружилися.</p>
+
+            <p class="lead">16-го листопада 2016 року сталася найщасливіща подія з усіх що могли статися - Іра народила Аню</p>
+            <!-- Аня 11 днів -->
+            <h1 class="display-6">Перша фотосесія після народження</h1>
+            <div id="carouselAnnBaby" class="carousel slide">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselAnnBaby" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselAnnBaby" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselAnnBaby" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselAnnBaby" data-bs-slide-to="3" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://pabiosa.blob.core.windows.net/family/Ann11_1.jpg" class="d-block w-100" alt="27.11.2016">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://pabiosa.blob.core.windows.net/family/Ann11_2.jpg" class="d-block w-100" alt="27.11.2016">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://pabiosa.blob.core.windows.net/family/Ann11_3.jpg" class="d-block w-100" alt="27.11.2016">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://pabiosa.blob.core.windows.net/family/Ann11_4.jpg" class="d-block w-100" alt="27.11.2016">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselAnnBaby" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselAnnBaby" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <!-- Аня росте -->
+            <h1 class="display-6">Аня</h1>
+
+            <div id="carouselAnnChild" class="carousel slide">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselAnnChild" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselAnnChild" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselAnnChild" data-bs-slide-to="2" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselAnnChild" data-bs-slide-to="3" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselAnnChild" data-bs-slide-to="4" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselAnnChild" data-bs-slide-to="5" aria-label="Slide 2"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://pabiosa.blob.core.windows.net/family/Ann_young.jpg" class="d-block w-100">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://pabiosa.blob.core.windows.net/family/Ann_1grade_01092022.jpg" class="d-block w-100">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://pabiosa.blob.core.windows.net/family/Ann_2.jpg" class="d-block w-100">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://pabiosa.blob.core.windows.net/family/Ann_3.jpg" class="d-block w-100">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://pabiosa.blob.core.windows.net/family/Ann_101.jpg" class="d-block w-100">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://pabiosa.blob.core.windows.net/family/Ann_102.jpg" class="d-block w-100">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselAnnChild" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselAnnChild" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <!-- Сім'я -->
+            <h1 class="display-6">
+                Наша сім'я
+            </h1>
+            <div id="carouselWe" class="carousel slide">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselWe" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselWe" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselWe" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselWe" data-bs-slide-to="3" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://pabiosa.blob.core.windows.net/family/Family_06122024.jpg" class="d-block w-100">
+                    </div>
+
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselWe" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselWe" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

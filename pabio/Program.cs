@@ -1,5 +1,9 @@
 using Microsoft.AspNetCore.Localization;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using pabio.Data;
+using pabio.Services;
+using System;
 using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,17 +13,11 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddLocalization();
 
-builder.Services.Configure<RequestLocalizationOptions>(options =>
-{
-    var supportedCultures = new[]
-     {
-        new CultureInfo("en"),
-        new CultureInfo("ua")
-    };
-    options.DefaultRequestCulture = new RequestCulture("ua");
-    options.SupportedCultures = supportedCultures;
-    options.SupportedUICultures = supportedCultures;
-});
+// Replace to KeyValult
+var connString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<PabioDbContext>(options => options.UseSqlServer(connString!));
+
+builder.Services.AddScoped<EventService>();
 
 var app = builder.Build();
 
