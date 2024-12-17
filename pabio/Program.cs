@@ -1,9 +1,12 @@
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using pabio.Data;
+using pabio.Models;
 using pabio.Services;
 using System;
 using System.Globalization;
@@ -19,6 +22,12 @@ builder.Services.AddLocalization();
 var keyVaultClient = new SecretClient(new Uri("https://pabio-kv2.vault.azure.net"), new DefaultAzureCredential());
 KeyVaultSecret secretSqlDbConnection = keyVaultClient.GetSecret("sqldbconn");
 builder.Services.AddDbContext<PabioDbContext>(options => options.UseSqlServer(secretSqlDbConnection.Value!));
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => {
+    options.SignIn.RequireConfirmedAccount = false;
+    options.Password.RequireNonAlphanumeric = false;
+})
+    .AddEntityFrameworkStores<PabioDbContext>();
 
 builder.Services.AddScoped<EventService>();
 
@@ -36,7 +45,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();

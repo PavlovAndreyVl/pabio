@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using pabio.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="nav bg-white">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li>
+            <a  asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Привіт, @User.FindFirst("Name")?.Value</a>
+        </li>
+        <li>
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link text-dark">Вийти</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li>
+            <a  asp-area="Identity" asp-page="/Account/Register">Реєстрація</a>
+        </li>
+        <li >
+            <a asp-area="Identity" asp-page="/Account/Login">Вхід</a>
+        </li>
+    }
+</ul>

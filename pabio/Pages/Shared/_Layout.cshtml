@@ -17,7 +17,7 @@
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-right ">
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between ">
             <ul class='nav bg-white'>
                 <li><a asp-page="/Index">Про мене</a></li>
                 <li><a asp-page="/CV">Професійна діяльність</a>
@@ -28,6 +28,7 @@
                 <li><a asp-page="/Events">Події</a></li>
                 <li><a asp-page="/Contacts">Контакти</a></li>
             </ul>
+            <partial name="_LoginPartial" />
         </div>
     </nav>
 
