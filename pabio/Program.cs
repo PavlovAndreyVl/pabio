@@ -1,3 +1,5 @@
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -13,9 +15,10 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddLocalization();
 
-// Replace to KeyValult
-var connString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<PabioDbContext>(options => options.UseSqlServer(connString!));
+
+var keyVaultClient = new SecretClient(new Uri("https://pabio-kv2.vault.azure.net"), new DefaultAzureCredential());
+KeyVaultSecret secretSqlDbConnection = keyVaultClient.GetSecret("sqldbconn");
+builder.Services.AddDbContext<PabioDbContext>(options => options.UseSqlServer(secretSqlDbConnection.Value!));
 
 builder.Services.AddScoped<EventService>();
 
@@ -33,9 +36,6 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
-var localizationOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>().Value;
-app.UseRequestLocalization(localizationOptions);
 
 app.UseAuthorization();
 
