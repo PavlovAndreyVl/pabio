@@ -18,10 +18,16 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddLocalization();
 
+builder.Configuration.AddAzureAppConfiguration(options =>
+{
+    options.Connect("Endpoint=https://pabio-config.azconfig.io;Id=I8Y6;Secret=6H1lD9Q2KMIW7kl8EtrfNy17wUSHoH5IoBKE5ZLnIp50VvgMJf3OJQQJ99ALAC5RqLJuukI8AAACAZAC4dos")
+           .ConfigureKeyVault(kv => kv.SetCredential(new DefaultAzureCredential())); // Optional: If using Key Vault
+});
 
-var keyVaultClient = new SecretClient(new Uri("https://pabio-kv2.vault.azure.net"), new DefaultAzureCredential());
-KeyVaultSecret secretSqlDbConnection = keyVaultClient.GetSecret("sqldbconn");
-builder.Services.AddDbContext<PabioDbContext>(options => options.UseSqlServer(secretSqlDbConnection.Value!));
+string defaultConnection = builder.Configuration["DefaultConnection"]!;
+//var keyVaultClient = new SecretClient(new Uri("https://pabio-kv2.vault.azure.net"), new DefaultAzureCredential());
+//KeyVaultSecret secretSqlDbConnection = keyVaultClient.GetSecret("sqldbconn");
+builder.Services.AddDbContext<PabioDbContext>(options => options.UseSqlServer(defaultConnection));
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => {
     options.SignIn.RequireConfirmedAccount = false;
