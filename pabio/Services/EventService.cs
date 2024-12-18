@@ -18,5 +18,17 @@ namespace pabio.Services
         {
             return await _context.Events.OrderByDescending(x=>x.Seq).ToListAsync();
         }
+
+        public async Task<Event?> GetEvent(int id)
+        {
+            return await _context.Events.FindAsync(id);
+        }
+
+        public async Task<bool> DoesEventExistAsync(int id)
+        {
+            return await _context.Events
+                .Where(r => r.EventId == id)
+                .AnyAsync();
+        }
     }
 }
