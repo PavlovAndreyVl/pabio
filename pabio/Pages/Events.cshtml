@@ -7,6 +7,16 @@
 
 <h1 class="display-5">Події</h1>
 
+@{
+
+    if (User != null
+        && User.Identity != null
+        && User.Identity.IsAuthenticated)
+    {
+        <button class="btn btn-primary">Додати подію</button>
+    }
+}
+
 <div class="container">
     @foreach (var eventItem in Model.Events)
     {
@@ -14,6 +24,7 @@
             <div class="card-header bg-secondary text-white position-sticky">
                 <h5 class="mb-0">@eventItem.Caption</h5>
             </div>
+            
             <div class="list-group list-group-flush">
 
                 <a class="list-group-item list-group-item-action" target="_blank" href="@eventItem.Url">

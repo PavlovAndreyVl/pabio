@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using pabio;
 using pabio.Data;
 using pabio.Models;
 using pabio.Services;
@@ -39,6 +40,14 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => {
     .AddEntityFrameworkStores<PabioDbContext>();
 
 builder.Services.AddScoped<EventService>();
+
+// Policies
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy(
+        Constants.Policies.GLOBAL_ADMIN,
+        policyBuilder => policyBuilder
+            .RequireClaim("IsGlobalAdmin"));
+
 
 var app = builder.Build();
 

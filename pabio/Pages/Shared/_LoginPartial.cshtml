@@ -10,8 +10,9 @@
             <a  asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Привіт, @User.FindFirst("Name")?.Value</a>
         </li>
         <li>
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link text-dark">Вийти</button>
+            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                @* <button type="submit" class="nav-link btn btn-link text-dark">Вийти</button> *@
+                <a href="#" onclick="document.getElementById('logoutForm').submit();">Вийти</a>
             </form>
         </li>
     }
