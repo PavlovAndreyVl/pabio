@@ -36,5 +36,12 @@ namespace pabio.Pages.Events
             //CanEditRecipe = isAuthorized.Succeeded;
             Events = await _service.GetEvents();
         }
+
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        {
+            await _service.DeleteEvent(id);
+
+            return RedirectToPage("List");
+        }
     }
 }

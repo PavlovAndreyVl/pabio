@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using pabio.Models;
 
@@ -11,9 +12,11 @@ using pabio.Models;
 namespace pabio.Migrations
 {
     [DbContext(typeof(PabioDbContext))]
-    partial class PabioDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241223152615_UpdateEvents")]
+    partial class UpdateEvents
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -9,8 +9,7 @@
                 Url = Url,
                 Date = Date,
                 Description = Description,
-                Caption = Caption,
-                CreatedAt = DateTime.Now
+                Caption = Caption
             };
         }
     }

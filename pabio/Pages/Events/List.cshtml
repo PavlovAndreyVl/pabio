@@ -9,12 +9,10 @@
 
 @{
 
-    if (User != null
-        && User.Identity != null
-        && User.Identity.IsAuthenticated)
+    if (Model.CanAddNew)
     {
         // <button class="btn btn-primary">Додати подію</button>
-        <a asp-page="Create" class="btn btn-success">Додати повію</a>
+        <a asp-page="Create" class="btn btn-success">Додати подію</a>
     }
 }
 
@@ -22,10 +20,22 @@
     @foreach (var eventItem in Model.Events)
     {
         <div class="card m-3">
-            <div class="card-header bg-secondary text-white position-sticky">
+            <div class="card-header bg-secondary text-white position-sticky  d-sm-inline-flex justify-content-between ">
                 <h5 class="mb-0">@eventItem.Caption</h5>
+
+                @{
+                    if (Model.CanAddNew)
+                    {
+                        <div class="d-sm-inline-flex">
+                            <a asp-Page="Edit" asp-route-id="@eventItem.EventId" class="btn btn-primary">Редагувати</a>
+                            <form asp-page-handler="Delete" asp-route-id="@eventItem.EventId">
+                                <button class="btn btn-danger">Видалити</button>
+                            </form>
+                        </div>
+                    }
+                }
             </div>
-            
+
             <div class="list-group list-group-flush">
 
                 <a class="list-group-item list-group-item-action" target="_blank" href="@eventItem.Url">

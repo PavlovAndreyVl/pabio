@@ -8,5 +8,7 @@
         public string? Date { get; set; }
         public string? Description { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTimeOffset LastModified { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }
