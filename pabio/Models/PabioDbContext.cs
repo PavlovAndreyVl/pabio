@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using pabio.Models;
+using pabio.Models.Events;
 using System;
 
-namespace pabio.Data
+namespace pabio.Models
 {
-    public class PabioDbContext: IdentityDbContext<ApplicationUser>
+    public class PabioDbContext : IdentityDbContext<ApplicationUser>
     {
         public PabioDbContext(DbContextOptions<PabioDbContext> options)
         : base(options)

@@ -6,19 +6,19 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using pabio.Data;
+using pabio.Models.Events;
 using pabio.Services;
 
-namespace pabio.Pages
+namespace pabio.Pages.Events
 {
-    public class EventsModel : PageModel
+    public class ListModel : PageModel
     {
         private readonly EventService _service;
         public readonly IAuthorizationService _authorizationService;
 
         public bool CanAddNew { get; set; }
 
-        public EventsModel(EventService service, IAuthorizationService authorizationService)
+        public ListModel(EventService service, IAuthorizationService authorizationService)
         {
             _service = service;
             _authorizationService = authorizationService;

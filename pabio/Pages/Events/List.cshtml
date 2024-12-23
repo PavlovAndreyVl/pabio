@@ -1,5 +1,5 @@
 ﻿@page
-@model pabio.Pages.EventsModel
+@model pabio.Pages.Events.ListModel
 
 @{
     ViewData["Title"] = "Події";
@@ -13,7 +13,8 @@
         && User.Identity != null
         && User.Identity.IsAuthenticated)
     {
-        <button class="btn btn-primary">Додати подію</button>
+        // <button class="btn btn-primary">Додати подію</button>
+        <a asp-page="Create" class="btn btn-success">Додати повію</a>
     }
 }
 

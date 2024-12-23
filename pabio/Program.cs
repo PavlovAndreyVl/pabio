@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging.ApplicationInsights;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using pabio;
-using pabio.Data;
 using pabio.Models;
 using pabio.Services;
 using System;
@@ -15,30 +15,41 @@ using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(x => x.SwaggerDoc("v1", new OpenApiInfo { Title = "pabio App", Version = "v1" }));
 
-builder.Services.AddLocalization();
-
+// Azure App Configuration
 builder.Configuration.AddAzureAppConfiguration(options =>
 {
     options.Connect("Endpoint=https://pabio-config.azconfig.io;Id=I8Y6;Secret=6H1lD9Q2KMIW7kl8EtrfNy17wUSHoH5IoBKE5ZLnIp50VvgMJf3OJQQJ99ALAC5RqLJuukI8AAACAZAC4dos")
            .ConfigureKeyVault(kv => kv.SetCredential(new DefaultAzureCredential())); // Optional: If using Key Vault
 });
 
+// Database
 string defaultConnection = builder.Configuration["DefaultConnection"]!;
 builder.Services.AddDbContext<PabioDbContext>(options => options.UseSqlServer(defaultConnection));
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => {
+// Application Insights
+string applicationInsightsConnection = builder.Configuration["PabioApplicationInsightsConnection"]!;
+builder.Services.AddApplicationInsightsTelemetry(options =>
+{
+    options.ConnectionString = applicationInsightsConnection;
+});
+builder.Logging.AddApplicationInsights();
+//builder.Logging.AddFilter<ApplicationInsightsLoggerProvider>("", LogLevel.Information);
+
+// Identity
+builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
+{
     options.SignIn.RequireConfirmedAccount = false;
     options.Password.RequireNonAlphanumeric = false;
 })
-    .AddEntityFrameworkStores<PabioDbContext>();
+.AddEntityFrameworkStores<PabioDbContext>();
 
+// Application services
 builder.Services.AddScoped<EventService>();
 
 // Policies
@@ -48,7 +59,7 @@ builder.Services.AddAuthorizationBuilder()
         policyBuilder => policyBuilder
             .RequireClaim("IsGlobalAdmin"));
 
-
+// Build Application
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -14,7 +14,7 @@ namespace pabio.Pages
 
         public void OnGet()
         {
-
+            _logger.LogInformation("Index page loaded");
         }
     }
 }
