@@ -51,6 +51,7 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 
 // Application services
 builder.Services.AddScoped<EventService>();
+builder.Services.AddScoped<ChatGptService>();
 
 // Policies
 builder.Services.AddAuthorizationBuilder()

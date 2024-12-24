@@ -1,0 +1,52 @@
+﻿@page
+@model pabio.Pages.Gamplitune.RequestModel
+@{
+    ViewData["Title"] = "Налаштування Gamplitune";
+}
+<h2>@ViewData["Title"]</h2>
+<hr />
+
+<div class="container-fluid">
+    <div class="container-fluid">
+        @* <h1 class="display-5">Налаштування Gamplitune </h1> *@
+        @* <p class="lead">Якщо ти також музикант і граєш на електрогітарі, то чудово знаєш, що перші 20-30 років не дуже-то і просто налаштувати підсилювач так, щоб гітара звучала як в улюблених композиціях. Щоб спростити тобі (і собі) цю задачу, я створив сервіс Gamplitune</p>
+
+        <p class="lead">Жми "Розпочати", напиши марку свого підсилювача, виконавця та назву композиції. Нажми "Сгенерувати" і Gamplitune зробить усе сам</p> *@
+
+        <form method="post" class="form-horizontal">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mt-1">
+                <label asp-for="Input.AmpModel" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="Input.AmpModel" class="form-control" autocomplete="AmpModel" aria-required="true" placeholder="Fender Mustang LT25" />
+                    <span asp-validation-for="Input.AmpModel" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group mt-1">
+                <label asp-for="Input.Artist" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="Input.Artist" class="form-control" autocomplete="Artist" aria-required="true" placeholder="Jimmy Hendrix" />
+                    <span asp-validation-for="Input.Artist" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group mt-1">
+                <label asp-for="Input.Song" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="Input.Song" class="form-control" autocomplete="Song" aria-required="true" placeholder="Little Wing" />
+                    <span asp-validation-for="Input.Song" class="text-danger"></span>
+                </div>
+            </div>
+
+            @* <a asp-page="Request" class="btn btn-success  mt-1">Сгенерувати</a> *@
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10 mt-3">
+                    <button type="submit" class="btn btn-primary">Сгенерувати</button>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+</div>

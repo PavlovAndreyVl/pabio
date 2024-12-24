@@ -1,0 +1,13 @@
+﻿@page
+@model pabio.Pages.Gamplitune.ResultModel
+@{
+    ViewData["Title"] = "Рекомендації щодо налаштування " + Model.Input?.AmpModel + " для виконання " + Model.Input?.Artist + " - " + Model.Input?.Song;
+}
+
+<h2>@ViewData["Title"]</h2>
+<hr />
+
+@if (!string.IsNullOrEmpty(Model.AiResponse))
+{
+    <p> @Html.Raw(Model.AiResponse)</p>
+}
