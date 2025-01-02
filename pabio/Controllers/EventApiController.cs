@@ -11,7 +11,7 @@ namespace pabio.Controllers
 {
     [Route("api/events")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class EventApiController : ControllerBase
     {
         private readonly EventService _service;
@@ -31,7 +31,7 @@ namespace pabio.Controllers
             try
             {
                 var events = await _service.GetEvents();
-                _logger.LogInformation($"API invoked to get all events. Returned {0}", events.Count);
+                _logger.LogInformation($"API invoked to get all events. Returned {events.Count}");
                 return Ok(events);
             }
             catch (Exception ex)
@@ -50,7 +50,7 @@ namespace pabio.Controllers
             try
             {
                 var eventItem = await _service.GetEvent(id);
-                _logger.LogInformation($"API invoked to get event by id={0}", id);
+                _logger.LogInformation($"API invoked to get event by id={id}");
                 return Ok(eventItem);
             }
             catch (Exception ex)

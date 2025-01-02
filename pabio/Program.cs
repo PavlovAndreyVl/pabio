@@ -1,9 +1,11 @@
 using Azure.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging.ApplicationInsights;
 using Microsoft.OpenApi.Models;
 using pabio;
 using pabio.Models;
 using pabio.Services;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,13 +27,16 @@ string defaultConnection = builder.Configuration["DefaultConnection"]!;
 builder.Services.AddDbContext<PabioDbContext>(options => options.UseSqlServer(defaultConnection));
 
 // Application Insights
+builder.Logging.ClearProviders(); // Optional: Clear default logging providers
 string applicationInsightsConnection = builder.Configuration["PabioApplicationInsightsConnection"]!;
 builder.Services.AddApplicationInsightsTelemetry(options =>
 {
     options.ConnectionString = applicationInsightsConnection;
 });
 builder.Logging.AddApplicationInsights();
-//builder.Logging.AddFilter<ApplicationInsightsLoggerProvider>("", LogLevel.Information);
+builder.Logging.AddFilter<ApplicationInsightsLoggerProvider>("", LogLevel.Information); // Default log level
+builder.Logging.AddFilter<ApplicationInsightsLoggerProvider>("Microsoft", LogLevel.Warning); // Microsoft logs
+builder.Logging.AddConsole();
 
 // Identity
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
