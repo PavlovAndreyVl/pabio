@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using pabio.Filters;
 using pabio.Models.Events;
 using pabio.Services;
@@ -10,22 +11,34 @@ namespace pabio.Controllers
 {
     [Route("api/events")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class EventApiController : ControllerBase
     {
         private readonly EventService _service;
-        public EventApiController(EventService service)
+        private readonly ILogger<EventApiController> _logger;
+        public EventApiController(EventService service,
+            ILogger<EventApiController> logger)
         {
             _service = service;
+            _logger = logger;
         }
 
         // GET: api/events
         [HttpGet]
         [AllowAnonymous]
-        public Task<List<Event>> Get()
+        public async Task<IActionResult> Get()
         {
-            return _service.GetEvents();
-            //return new string[] { "value1", "value2" };
+            try
+            {
+                var events = await _service.GetEvents();
+                _logger.LogInformation($"API invoked to get all events. Returned {0}", events.Count);
+                return Ok(events);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Get events list error");
+                return BadRequest();
+            }
         }
 
         // GET api/events/5
@@ -34,30 +47,76 @@ namespace pabio.Controllers
         //[EnsureEventExists]
         public async Task<IActionResult> Get(int id)
         {
-            var eventItem = await _service.GetEvent(id);
-            return Ok(eventItem);
-            //if (eventItem == null)
-            //    return NotFound();
-
-
+            try
+            {
+                var eventItem = await _service.GetEvent(id);
+                _logger.LogInformation($"API invoked to get event by id={0}", id);
+                return Ok(eventItem);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Get event by id={id} error");
+                return BadRequest();
+            }
         }
 
         // POST api/events
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] CreateEventCommand input)
         {
+            try
+            {
+                if (input != null)
+                {
+                    var id = await _service.CreateEvent(input);
+                    _logger.LogInformation($"New event(id={id}) created by API invoke");
+                    return Ok(id);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Event creation error");
+                return BadRequest();
+            }
+            return BadRequest();
         }
 
         // PUT api/events/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(int id, [FromBody] UpdateEventCommand input)
         {
+            try
+            {
+                if (input != null)
+                {
+                    await _service.UpdateEvent(input);
+                    _logger.LogInformation($"Event(id={id}) updated by API invoke");
+                    return Ok(id);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Event update error");
+                return BadRequest();
+            }
+            return BadRequest();
         }
 
         // DELETE api/events/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            try
+            {
+                await _service.DeleteEvent(id);
+                _logger.LogInformation($"Event(id={id}) deleted by API invoke");
+                return Ok(id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Event deletion error");
+                return BadRequest();
+            }
         }
     }
 }

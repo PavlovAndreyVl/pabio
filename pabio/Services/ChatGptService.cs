@@ -11,12 +11,13 @@ namespace pabio.Services
         private readonly string apiUrl = "";
         private readonly string apiKey;
 
-        readonly ILogger _logger;
-        public ChatGptService(IConfiguration configuration, ILoggerFactory factory)
+        readonly ILogger<ChatGptService> _logger;
+        public ChatGptService(IConfiguration configuration, ILogger<ChatGptService> logger)
         {
+            _logger = logger;
             apiUrl = configuration["ChatGptApiUrl"]!;
             apiKey = configuration["ChatGptApiKey"]!;
-            _logger = factory.CreateLogger<EventService>();
+            
         }
 
         public async Task<string> GetResponse(string prompt)

@@ -1,17 +1,9 @@
 using Azure.Identity;
-using Azure.Security.KeyVault.Secrets;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging.ApplicationInsights;
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using pabio;
 using pabio.Models;
 using pabio.Services;
-using System;
-using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
