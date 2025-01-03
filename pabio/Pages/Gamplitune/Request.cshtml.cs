@@ -22,10 +22,10 @@ namespace pabio.Pages.Gamplitune
             Input = new Request();
         }
 
-        public Task<IActionResult> OnPost()
-        {
-            return Task.FromResult<IActionResult>(RedirectToPage("Result", Input));
+        //public Task<IActionResult> OnPost()
+        //{
+        //    return Task.FromResult<IActionResult>(RedirectToPage("Result", Input));
 
-        }
+        //}
     }
 }

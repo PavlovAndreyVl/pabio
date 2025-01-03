@@ -1,13 +1,24 @@
 ﻿@page
 @model pabio.Pages.Gamplitune.ResultModel
 @{
-    ViewData["Title"] = "Рекомендації щодо налаштування " + Model.Input?.AmpModel + " для виконання " + Model.Input?.Artist + " - " + Model.Input?.Song;
+    ViewData["Title"] = "Рекомендації";
 }
 
-<h2>@ViewData["Title"]</h2>
-<hr />
+@* <h2>@ViewData["Title"]</h2>
+<hr /> *@
 
-@if (!string.IsNullOrEmpty(Model.AiResponse))
-{
-    <p> @Html.Raw(Model.AiResponse)</p>
+@{
+    if (ModelState.IsValid)
+    {
+        if (!string.IsNullOrEmpty(Model.AiResponse))
+        {
+            <p class="display-6">Налаштування @Model.Input?.AmpModel для виконання @Model.Input?.Artist -  @Model.Input?.Song</p>
+            <p> @Html.Raw(Model.AiResponse)</p>
+        }
+    }
+    else
+    {
+        <p>@Html.ValidationSummary()</p>
+        <a asp-page="Request">Повернутись</a>
+    }
 }
